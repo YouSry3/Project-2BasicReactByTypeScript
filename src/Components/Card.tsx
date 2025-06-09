@@ -1,21 +1,39 @@
 import type { ICard } from '../Interfaces/ICard';
+import { txtSlicer } from '../Logic/SpliteTxt';
 import Buttom from './Buttom';
+import CycleColor from './UI/CycleColor';
 
 const Card = (props: ICard) => {
-  const { id, title, description, urlImage, price, rating } = props;
+  // dont use 'category'============================!!!!!!!!!!!!!!!!!!!!!!!
+
+  const { id, title, description, imageURL, price ,colors ,category} = props;
   return (
-    <div className="bg-white shadow-md rounded-lg p-6 m-4 my-1.5" key={id}>
-      <img src={urlImage} alt={title} className="w-full h-48 object-cover rounded-t-lg" />
+    <div className="bg-white shadow-lg rounded-lg p-6 m-4 my-1.5" key={id}>
+      <img src={imageURL} alt={title} className="w-full h-48 object-cover rounded-t-lg" />
       <h2 className="text-xl font-bold mt-4">{title}</h2>
-      <p className="text-gray-700 mt-2">{description}</p>
-      <div className="flex justify-between items-center mt-4">
-        <span className="text-lg font-semibold">${price.toFixed(2)}</span>
-        <span className="text-yellow-500">{'★'.repeat(Math.round(rating))}</span>
+      <p className="text-gray-700 mt-2">{txtSlicer(description)}</p>
+
+            {/* Render Cycle Colors in big Cylcle of Product  */}
+      <div className="listsColor flex space-x-1 mt-1.5">
+              {colors.map(col=>
+        <CycleColor color={col} />
+      )}
       </div>
-      <div className="btns flex justify-between mt-4 space-x-2">
-          <Buttom className='bg-green-500 w-full  text-0.5xl md:text-2xl lg:text-4xl ' onClick={()=> alert(`Udate This Item`)}>Edit</Buttom>
-          <Buttom className='bg-red-500 w-full text-0.5xl md:text-2xl lg:text-4xl' onClickCapture={()=> alert(`Deleted This Item`)}>Delete</Buttom>
+
+
+      <div className="flex justify-between items-center mt-4 mb-2">
+        <span className="text-amber-300 text-lg font-semibold">${price}</span>
+        <div className='flex items-center space-x-2'>
+          <span className="text-gray-600 text-sm">{txtSlicer(category.name,3)}</span>
+          <img src={category.imageURL} alt={category.name} className="w-10 h-10 rounded-full  object-cover" />
+        </div>
+        </div>
+
+      <div className="flex items-center justify-between space-x-2">
+          <Buttom className='bg-indigo-700 hover:bg-indigo-800 w-full  text-0.5xl md:text-2xl lg:text-2xl ' onClick={()=> alert(`Udate This Item`)}>Edit</Buttom>
+          <Buttom className='bg-[#c2344d] hover:bg-red-800 w-full text-0.5xl md:text-2xl lg:text-2xl' onClickCapture={()=> alert(`Deleted This Item`)}>Delete</Buttom>
       </div>
+
       
     </div>
   );

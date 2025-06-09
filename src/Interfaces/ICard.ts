@@ -1,8 +1,12 @@
 export interface ICard {
-  id: string
+  id: number
   title: string
   description: string
-  urlImage: string
-  price: number
-  rating: number
+  imageURL: string
+  colors: string[]
+  category: {
+    name: string
+    imageURL: string
+  }
+  price: string
 }

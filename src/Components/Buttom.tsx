@@ -3,12 +3,13 @@ import type { ReactNode, ButtonHTMLAttributes } from "react";
 interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   className?: string;
+  width?: "w-full" | "w-fit";
 }
 
-const Buttom = ({ children, className, ...rest }: IProps) => {
+const Buttom = ({ children, className,width = "w-full", ...rest }: IProps) => {
   return (
     <button
-      className={`font-serif text-2xl rounded-lg  text-amber-50 ${className} hover:cursor-pointer`}
+      className={`${className} ${width} rounded-lg text-white px-3 py-3 duration-200 font-medium `}
       {...rest}
     >
       {children}
