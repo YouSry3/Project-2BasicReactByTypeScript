@@ -1,6 +1,7 @@
 import type { ICard } from '../Interfaces/ICard';
 import { txtSlicer } from '../Logic/SpliteTxt';
 import Buttom from './Buttom';
+import IMage from './IMage';
 import CycleColor from './UI/CycleColor';
 
 const Card = (props: ICard) => {
@@ -21,13 +22,13 @@ const Card = (props: ICard) => {
       </div>
 
 
-      <div className="flex justify-between items-center mt-4 mb-2">
-        <span className="text-amber-300 text-lg font-semibold">${price}</span>
-        <div className='flex items-center space-x-2'>
-          <span className="text-gray-600 text-sm">{txtSlicer(category.name,3)}</span>
-          <img src={category.imageURL} alt={category.name} className="w-10 h-10 rounded-full  object-cover" />
+    <div className="flex items-center justify-between mb-4">
+        <span className="text-lg text-indigo-600 font-semibold">${price}</span>
+        <div className="flex items-center space-x-2">
+          <span className="text-xs font-semibold">{category.name}</span>
+           <IMage imageURL={category.imageURL} alt={category.name} className="w-10 h-10 rounded-full object-bottom" />
         </div>
-        </div>
+      </div>
 
       <div className="flex items-center justify-between space-x-2">
           <Buttom className='bg-indigo-700 hover:bg-indigo-800 w-full  text-0.5xl md:text-2xl lg:text-2xl ' onClick={()=> alert(`Udate This Item`)}>Edit</Buttom>

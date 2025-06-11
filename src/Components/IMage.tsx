@@ -1,15 +1,15 @@
 import type { HTMLAttributes } from "react";
 
 interface IIMage extends HTMLAttributes<HTMLImageElement> {
-  src: string;
+  imageURL: string;
   alt?: string;
   
 }
 
-const IMage = ({src, alt,...rest}: IIMage)=>{
+const IMage = ({imageURL, alt,...rest}: IIMage)=>{
   return (
       <>
-        <img src={src} alt={alt} {...rest} />
+        <img src={imageURL} alt={alt} {...rest} />
       </>
   );
 }
