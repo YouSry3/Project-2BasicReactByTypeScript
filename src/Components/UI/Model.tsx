@@ -1,4 +1,4 @@
-import { Dialog, Transition } from "@headlessui/react";
+import { Dialog, Transition, TransitionChild } from "@headlessui/react";
 import { Fragment, type ReactNode } from "react";
 
 interface IProps {
@@ -16,7 +16,7 @@ const Modal = ({ isOpen, closeModal, title, description, children }: IProps) => 
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           {/* backdrop-blur-sm */}
           <div className="fixed inset-0  backdrop-blur-sm" aria-hidden="true" />
-          <Transition.Child
+          <TransitionChild
             as={Fragment}
             enter="ease-out duration-300"
             enterFrom="opacity-0"
@@ -27,7 +27,7 @@ const Modal = ({ isOpen, closeModal, title, description, children }: IProps) => 
           >
             {/* bg-opacity-210 */}
             <div className="fixed inset-0  " />
-          </Transition.Child>
+          </TransitionChild>
 
           <div className="fixed inset-0 overflow-y-auto">
             <div className="flex min-h-full items-center justify-center p-4 text-center">

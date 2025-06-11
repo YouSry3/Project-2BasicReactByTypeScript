@@ -36,16 +36,25 @@ const defaultProductObj = {
   const closeModal = () => setIsOpen(false);
   const openModal = () => setIsOpen(true);
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    console.log("Event target:", event.target);
     const { value, name } = event.target;
-
+    
+      
     setProduct({
       ...product,
       [name]: value,
     });
-    setErrors({
-      ...errors,
-      [name]: "",
+
+      const { title, description, price, imageURL } = product;
+
+    const validationErrors = productValidation({
+      title,
+      description,
+      price,
+      imageURL,
     });
+
+    setErrors(validationErrors);
   };
 
   const submitHandler = (event: FormEvent<HTMLFormElement>) => {
