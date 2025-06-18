@@ -7,9 +7,9 @@ import CycleColor from './UI/CycleColor';
 const Card = (props: ICard) => {
   // dont use 'category'============================!!!!!!!!!!!!!!!!!!!!!!!
 
-  const { id, title, description, imageURL, price ,colors ,category} = props;
+  const { title, description, imageURL, price ,colors ,category} = props;
   return (
-    <div className="bg-white shadow-lg rounded-lg p-6 m-4 my-1.5" key={id}>
+    <div className="bg-white shadow-lg rounded-lg p-6 m-4 my-1.5" >
       <img src={imageURL} alt={title} className="w-full h-48 object-cover rounded-t-lg" />
       <h2 className="text-xl font-bold mt-4">{title}</h2>
       <p className="text-gray-700 mt-2">{txtSlicer(description)}</p>

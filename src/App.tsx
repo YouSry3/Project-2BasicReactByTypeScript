@@ -8,6 +8,7 @@ import Input from "./Components/UI/Input";
 import type { IProduct } from "./Interfaces/IProduct";
 import ErrorMessage from "./Components/UI/ErorrMessage";
 import { productValidation } from "./Validation";
+import Select from "./Components/UI/Select";
 
 
 
@@ -106,6 +107,7 @@ const defaultProductObj = {
       <Modal isOpen={isOpen} closeModal={closeModal} title="ADD A NEW PRODUCT">
         <form className="space-y-3" onSubmit={submitHandler}>
           {renderFormInputList}
+          <Select />
           <div className="flex items-center space-x-3">
             <Buttom className="bg-indigo-700 hover:bg-indigo-800" type="submit">Submit</Buttom>
             <Buttom type="button" className="bg-[#f5f5fa] hover:bg-gray-300 !text-black" onClick={onCancel}>
