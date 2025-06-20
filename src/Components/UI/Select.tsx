@@ -1,22 +1,24 @@
 'use client'
 
-import { useState } from 'react'
 import { Label, Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/react'
 import { ChevronUpDownIcon } from '@heroicons/react/16/solid'
 import { CheckIcon } from '@heroicons/react/20/solid'
-import { categories } from '../../Data/categories'
 import type { ICategory } from '../../Interfaces/ICategory'
+import { categories } from '../../Data/categories'
+
+interface IProps{
+  selected : ICategory;
+  setSelected: (category: ICategory) => void;
+}
 
 
-const defaultCategory: ICategory[] = categories;
-
-const Select = ()=> {
-  const [selected, setSelected] = useState(defaultCategory[0])
+const Select = ({selected , setSelected}: IProps)=> {
+  
 
   return (
     <Listbox value={selected} onChange={setSelected}>
       <Label className="block text-sm/6 font-medium text-gray-900">Categories</Label>
-      <div className="relative mt-2">
+      <div className="relative mt-2 pt-4">
         <ListboxButton className="grid w-full cursor-default grid-cols-1 rounded-md bg-white py-1.5 pr-2 pl-3 text-left text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
           <span className="col-start-1 row-start-1 flex items-center gap-3 pr-6">
             <img alt="" src={selected.imageURL} className="size-5 shrink-0 rounded-full" />
@@ -32,7 +34,7 @@ const Select = ()=> {
           transition
           className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-hidden data-leave:transition data-leave:duration-100 data-leave:ease-in data-closed:data-leave:opacity-0 sm:text-sm"
         >
-          {defaultCategory.map((person) => (
+          {categories.map((person) => (
             <ListboxOption
               key={person.id}
               value={person}

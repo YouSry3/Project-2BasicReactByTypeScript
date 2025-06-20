@@ -17,7 +17,7 @@ const Card = (props: ICard) => {
             {/* Render Cycle Colors in big Cylcle of Product  */}
       <div className="listsColor flex space-x-1 mt-1.5">
               {colors.map(col=>
-        <CycleColor color={col} />
+        <CycleColor color={col}  key={col}/>
       )}
       </div>
 

@@ -1,8 +1,9 @@
 import type { ICard } from "../Interfaces/ICard";
+import { v4 as uuid } from "uuid";
 
 export const ProductsList: ICard[] = [
   {
-    id: 1,
+    id: uuid() ,
     title: "Nike Shoes",
     description:
       "As luxury T-Shirt is just as distinctive and can be trimmed with premium materials like Nappa leather and carbon fiber.",
@@ -19,7 +20,7 @@ export const ProductsList: ICard[] = [
     },
   },
   {
-    id: 2,
+    id: uuid() ,
     title: "2022 Genesis GV70: Nominee",
     description:
       "As luxury brands go, South Korea’s Genesis is still in its infancy...",
@@ -34,7 +35,7 @@ export const ProductsList: ICard[] = [
     },
   },
   {
-    id: 3,
+    id: uuid() ,
     title: "Chevrolet Spark. 995cc Petrol",
     description:
       "As luxury brands go, South Korea’s Genesis is still in its infancy...",
@@ -49,7 +50,7 @@ export const ProductsList: ICard[] = [
     },
   },
   {
-    id: 4,
+    id: uuid() ,
     title: "Casual Men Clothes",
     description:
       "As luxury T-Shirt is just as distinctive and can be trimmed with premium materials like Nappa leather and carbon fiber.",
@@ -65,7 +66,7 @@ export const ProductsList: ICard[] = [
     },
   },
   {
-    id: 5,
+    id: uuid() ,
     title: "Nike Shoes",
     description:
       "As luxury T-Shirt is just as distinctive and can be trimmed with premium materials like Nappa leather and carbon fiber.",
@@ -83,7 +84,7 @@ export const ProductsList: ICard[] = [
     },
   },
   {
-    id: 6,
+    id: uuid() ,
     title: "2022 Genesis GV70: Nominee",
     description:
       "As luxury brands go, South Korea’s Genesis is still in its infancy...",
@@ -98,7 +99,7 @@ export const ProductsList: ICard[] = [
     },
   },
   {
-    id: 7,
+    id: uuid() ,
     title: "Chevrolet Spark. 995cc Petrol",
     description:
       "As luxury brands go, South Korea’s Genesis is still in its infancy...",
@@ -113,7 +114,7 @@ export const ProductsList: ICard[] = [
     },
   },
   {
-    id: 8,
+    id: uuid() ,
     title: "Casual Men Clothes",
     description:
       "As luxury T-Shirt is just as distinctive and can be trimmed with premium materials like Nappa leather and carbon fiber.",
