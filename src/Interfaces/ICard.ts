@@ -15,7 +15,7 @@
  *  */
 
 export interface ICard {
-  id: number
+  id: string
   title: string
   description: string
   imageURL: string
