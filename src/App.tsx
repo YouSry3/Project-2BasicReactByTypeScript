@@ -17,6 +17,7 @@ import {categories} from "./Data/categories";
 
 function App() {
 const defaultProductObj = {
+    id: uuid(),
     title: "",
     description: "",
     imageURL: "",
@@ -108,7 +109,7 @@ const defaultProductObj = {
       {/* Removed count as it is undefined */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
         {Products.map(product => 
-              <Card key={product.id} {...product} />
+              <Card  {...product} />
             )}
                 {/* ADD PRODUCT MODAL */}
       <Modal isOpen={isOpen} closeModal={closeModal} title="ADD A NEW PRODUCT">
