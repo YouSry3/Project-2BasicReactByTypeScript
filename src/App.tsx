@@ -116,14 +116,14 @@ function App() {
       </Buttom>
       {/* Removed count as it is undefined */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
-        {Products.map((product) => (
-          <Card
-            {...product}
-            id={product.id ?? uuid()}
-            title={product.title}
-            key={product.id ?? uuid()}
-          />
-        ))}
+          {Products.map((product) => {
+            const id = product.id ?? uuid();
+
+            return (
+              <Card key={id} {...product} id={id} />
+            );
+          })}
+
         {/* ADD PRODUCT MODAL */}
         <Modal
           isOpen={isOpen}

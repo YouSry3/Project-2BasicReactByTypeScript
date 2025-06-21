@@ -5,7 +5,6 @@ import IMage from './IMage';
 import CycleColor from './UI/CycleColor';
 
 const Card = (props: ICard) => {
-  // dont use 'category'============================!!!!!!!!!!!!!!!!!!!!!!!
 
   const {id ,  title, description, imageURL, price ,colors ,category} = props;
   return (
