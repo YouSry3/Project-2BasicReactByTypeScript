@@ -1,4 +1,6 @@
-interface IProps  {
+import { HTMLAttributes } from "react";
+
+interface IProps extends HTMLAttributes<HTMLSpanElement> {
   color: string;
 }
 

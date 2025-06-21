@@ -2,11 +2,41 @@ import type { ICard } from '../Interfaces/ICard';
 import { txtSlicer } from '../Logic/SpliteTxt';
 import Buttom from './Buttom';
 import IMage from './IMage';
-import CycleColor from './UI/CycleColor';
+import CycleColor from './UI/CircleColor';
 
-const Card = (props: ICard) => {
+interface CardProps {
+  product: ICard;
+  setProductToEdit: (product: ICard) => void;
+  openEditModal: () => void;
+  idx: number;
+  setProductToEditIdx: (value: number) => void;
 
-  const {id ,  title, description, imageURL, price ,colors ,category} = props;
+
+
+}
+const Card = ( {  
+  product,
+  setProductToEdit,
+  openEditModal,
+  idx,
+  setProductToEditIdx,
+  
+}: CardProps) => {
+  const {id ,  title, description, imageURL, price ,colors ,category} = product;
+    /* ------- RENDER -------  */
+  
+
+  /* ------- HANDLER -------  */
+  const onEdit = () => {
+    setProductToEdit(product);
+    openEditModal();
+    setProductToEditIdx(idx);
+  };
+
+  const onRemove = () => {
+    setProductToEdit(product);
+    alert(`Deleted This Item`);
+  };
   return (
     <div className="bg-white shadow-lg rounded-lg p-6 m-4 my-1.5"  key={id}>
       <img src={imageURL} alt={title} className="w-full h-48 object-cover rounded-t-lg" />
@@ -30,8 +60,8 @@ const Card = (props: ICard) => {
       </div>
 
       <div className="flex items-center justify-between space-x-2">
-          <Buttom className='bg-indigo-700 hover:bg-indigo-800 w-full  text-0.5xl md:text-2xl lg:text-2xl ' onClick={()=> alert(`Udate This Item`)}>Edit</Buttom>
-          <Buttom className='bg-[#c2344d] hover:bg-red-800 w-full text-0.5xl md:text-2xl lg:text-2xl' onClickCapture={()=> alert(`Deleted This Item`)}>Delete</Buttom>
+          <Buttom className='bg-indigo-700 hover:bg-indigo-800 w-full  text-0.5xl md:text-2xl lg:text-2xl ' onClick={onEdit}>Edit</Buttom>
+          <Buttom className='bg-[#c2344d] hover:bg-red-800 w-full text-0.5xl md:text-2xl lg:text-2xl' onClickCapture={onRemove}>Delete</Buttom>
       </div>
 
       

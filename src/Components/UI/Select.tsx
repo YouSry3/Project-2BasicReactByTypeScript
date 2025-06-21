@@ -6,13 +6,13 @@ import { CheckIcon } from '@heroicons/react/20/solid'
 import type { ICategory } from '../../Interfaces/ICategory'
 import { categories } from '../../Data/categories'
 
-interface IProps{
-  selected : ICategory;
+interface IProps {
+  selected: { name: string; imageURL: string };
   setSelected: (category: ICategory) => void;
 }
 
 
-const Select = ({selected , setSelected}: IProps)=> {
+const Select = ({ selected, setSelected }: IProps)=> {
   
 
   return (
