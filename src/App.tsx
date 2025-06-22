@@ -1,5 +1,6 @@
-import {  FormEvent, useState, type ChangeEvent } from "react";
+import {  FormEvent, useEffect, useState, type ChangeEvent } from "react";
 import { v4 as uuid } from "uuid";
+
 import Buttom from "./Components/Buttom";
 import Card from "./Components/Card";
 import { ProductsList } from "./Data/ProductsList";
@@ -12,7 +13,7 @@ import { productValidation } from "./Validation";
 import Select from "./Components/UI/Select";
 import { categories } from "./Data/categories";
 import { Colors } from "./Data/Colors";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 import { ProductNameTypes } from "./Types";
 import CircleColor from "./Components/UI/CircleColor";
@@ -41,6 +42,10 @@ function App() {
   const [Products, setProducts] = useState<IProduct[]>(ProductsList);
   const [tempColors, setTempColor] = useState<string[]>([]);
 
+
+  useEffect(() => {
+  toast.success("Component loaded!");
+}, []);
   const [errors, setErrors] = useState({
     title: "",
     description: "",
@@ -88,26 +93,26 @@ function App() {
       imageURL,
     });
 
-    const hasErrorMsg =
-      Object.values(errors).some(value => value === "") && Object.values(errors).every(value => value === "");
+      const hasErrorMsg = Object.values(errors).some(error => error !== "");
+      if (hasErrorMsg) {
+        setErrors(errors);
+        return;
+      }
 
-    if (!hasErrorMsg) {
-      setErrors(errors);
-      return;
-    }
 
     setProducts(prev => [{ ...product, id: uuid(), colors: tempColors, category: selectedCategory }, ...prev]);
     // setProduct(defaultProductObj);
-    setTempColor([]);
-    closeModal();
-
-    toast("Product has been added successfully!", {
+        toast("Product has been added successfully!", {
       icon: "👏",
       style: {
         backgroundColor: "black",
         color: "white",
       },
     });
+    setTempColor([]);
+    closeModal();
+
+
   };
   // Function to open the edit modal
 
@@ -285,6 +290,7 @@ function App() {
           </div>
         </form>
       </Modal>
+      <Toaster />
 
     </>
   );
