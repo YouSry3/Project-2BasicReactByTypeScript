@@ -17,21 +17,11 @@ import toast, { Toaster } from "react-hot-toast";
 
 import { ProductNameTypes } from "./Types";
 import CircleColor from "./Components/UI/CircleColor";
+import { defaultProductObj } from "./Data/defaultProductObj";
 
 
 function App() {
-  const defaultProductObj = {
-    id: uuid(),
-    title: "",
-    description: "",
-    imageURL: "",
-    price: "",
-    colors: [],
-    category: {
-      name: "",
-      imageURL: "",
-    },
-  };
+
   
   // State to manage the modal visibility
 
@@ -40,6 +30,7 @@ function App() {
   const [isOpenEditModal, setIsOpenEditModal] = useState(false);
   const [productToEditIdx, setProductToEditIdx] = useState<number>(0);
   const [Products, setProducts] = useState<IProduct[]>(ProductsList);
+  const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
   const [tempColors, setTempColor] = useState<string[]>([]);
 
 
@@ -61,6 +52,8 @@ function App() {
   const closeEditModal = () => setIsOpenEditModal(false);
   const openEditModal = () => setIsOpenEditModal(true);
   const openModal = () => setIsOpen(true);
+  const closeConfirmModal = () => setIsOpenConfirmModal(false);
+  const openConfirmModal = () => setIsOpenConfirmModal(true);
   
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
@@ -160,9 +153,23 @@ function App() {
       openEditModal={openEditModal}
       idx={idx}
       setProductToEditIdx={setProductToEditIdx}
+      openConfirmModal={openConfirmModal}
     />
   ));
-  // 
+  // Handel remove product
+  const removeProductHandler = () => {
+    const filtered = Products.filter(product => product.id !== productToEdit.id);
+    setProducts(filtered);
+    closeConfirmModal();
+    toast("Product has been deleted successfully!", {
+      icon: "👏",
+      style: {
+        backgroundColor: "#c2344d",
+        color: "white",
+      },
+    });
+  };
+
    
     const onChangeEditHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
@@ -290,6 +297,24 @@ function App() {
           </div>
         </form>
       </Modal>
+
+  {/* DELETE PRODUCT CONFIRM MODAL */}
+      <Modal
+        isOpen={isOpenConfirmModal}
+        closeModal={closeConfirmModal}
+        title="Are you sure you want to remove this Product from your Store?"
+        description="Deleting this product will remove it permanently from your inventory. Any associated data, sales history, and other related information will also be deleted. Please make sure this is the intended action."
+      >
+        <div className="flex items-center space-x-3">
+          <Buttom className="bg-[#c2344d] hover:bg-red-800" onClick={removeProductHandler}>
+            Yes, remove
+          </Buttom>
+          <Buttom type="button" className="bg-[#f5f5fa] hover:bg-gray-300 !text-black" onClick={closeConfirmModal}>
+            Cancel
+          </Buttom>
+        </div>
+      </Modal>
+
       <Toaster />
 
     </>

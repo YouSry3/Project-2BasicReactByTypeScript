@@ -10,6 +10,7 @@ interface CardProps {
   openEditModal: () => void;
   idx: number;
   setProductToEditIdx: (value: number) => void;
+  openConfirmModal: () => void;
 
 
 
@@ -20,6 +21,7 @@ const Card = ( {
   openEditModal,
   idx,
   setProductToEditIdx,
+  openConfirmModal,
   
 }: CardProps) => {
   const {id ,  title, description, imageURL, price ,colors ,category} = product;
@@ -35,7 +37,7 @@ const Card = ( {
 
   const onRemove = () => {
     setProductToEdit(product);
-    alert(`Deleted This Item`);
+    openConfirmModal();
   };
   return (
     <div className="bg-white shadow-lg rounded-lg p-6 m-4 my-1.5"  key={id}>
