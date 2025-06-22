@@ -12,7 +12,8 @@ import { productValidation } from "./Validation";
 import Select from "./Components/UI/Select";
 import { categories } from "./Data/categories";
 import { Colors } from "./Data/Colors";
-import { toast } from "react-hot-toast";
+import toast from "react-hot-toast";
+
 import { ProductNameTypes } from "./Types";
 import CircleColor from "./Components/UI/CircleColor";
 
@@ -38,7 +39,7 @@ function App() {
   const [isOpenEditModal, setIsOpenEditModal] = useState(false);
   const [productToEditIdx, setProductToEditIdx] = useState<number>(0);
   const [Products, setProducts] = useState<IProduct[]>(ProductsList);
-    const [tempColors, setTempColor] = useState<string[]>([]);
+  const [tempColors, setTempColor] = useState<string[]>([]);
 
   const [errors, setErrors] = useState({
     title: "",
@@ -96,7 +97,7 @@ function App() {
     }
 
     setProducts(prev => [{ ...product, id: uuid(), colors: tempColors, category: selectedCategory }, ...prev]);
-    setProduct(defaultProductObj);
+    // setProduct(defaultProductObj);
     setTempColor([]);
     closeModal();
 
@@ -243,7 +244,7 @@ function App() {
           <Select selected={selectedCategory} setSelected={setSelectedCategory} />
           <div className="flex items-center flex-wrap space-x-1">{renderProductColors}</div>
           <div className="flex items-center flex-wrap space-x-1">
-            {Colors.map(color => (
+            {tempColors.map(color => (
               <span
                 key={color}
                 className="p-1 mr-1 mb-1 text-xs rounded-md text-white"
@@ -279,10 +280,8 @@ function App() {
         
 
           <div className="flex items-center space-x-3">
-            <Buttom className="bg-indigo-700 hover:bg-indigo-800">Submit</Buttom>
-            <Buttom type="button" className="bg-[#f5f5fa] hover:bg-gray-300 !text-black" onClick={closeEditModal}>
-              Cancel
-            </Buttom>
+            <Buttom className="bg-indigo-700 hover:bg-indigo-800">UpDate</Buttom>
+        
           </div>
         </form>
       </Modal>
