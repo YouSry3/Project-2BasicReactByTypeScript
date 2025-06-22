@@ -204,7 +204,9 @@ function App() {
 
 
   const onCancel = () => {
+    setTempColor([]);
     setProduct(defaultProductObj);
+    
     setIsOpen(false);
   };
 
