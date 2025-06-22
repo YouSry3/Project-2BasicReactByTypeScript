@@ -32,7 +32,7 @@ function App() {
   };
   
   // State to manage the modal visibility
-  const [iD, setId] = useState(0);
+
   const [isOpen, setIsOpen] = useState(false);
   const [product, setProduct] = useState<IProduct>(defaultProductObj);
   const [isOpenEditModal, setIsOpenEditModal] = useState(false);
@@ -76,35 +76,38 @@ function App() {
     setErrors(validationErrors);
   };
 
-  const submitHandler = () => {
+  const submitHandler = (event: FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
     const { title, description, price, imageURL } = product;
 
-    const validationErrors = productValidation({
+    const errors = productValidation({
       title,
       description,
       price,
       imageURL,
     });
 
-    setErrors(validationErrors);
+    const hasErrorMsg =
+      Object.values(errors).some(value => value === "") && Object.values(errors).every(value => value === "");
 
-    // If there are no errors, you can proceed to add the product logic here
-    if (Object.values(validationErrors).every((err) => !err)) {
-      // Add product logic here
-      setProduct(defaultProductObj);
-      setIsOpen(false);
-      setProducts((prevProducts) => [
-        { 
-          ...product,
-          id: iD.toString(),
-           category: selectedCategory
-           },
-        ...prevProducts,
-      ]);
-      setId((prevId) => prevId + 1);
+    if (!hasErrorMsg) {
+      setErrors(errors);
+      return;
     }
-  };
 
+    setProducts(prev => [{ ...product, id: uuid(), colors: tempColors, category: selectedCategory }, ...prev]);
+    setProduct(defaultProductObj);
+    setTempColor([]);
+    closeModal();
+
+    toast("Product has been added successfully!", {
+      icon: "👏",
+      style: {
+        backgroundColor: "black",
+        color: "white",
+      },
+    });
+  };
   // Function to open the edit modal
 
 
