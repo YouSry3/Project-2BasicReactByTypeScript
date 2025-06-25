@@ -202,7 +202,7 @@ function App() {
     />
   ));
 
-// jkmlk
+// jkmlkndbuebdk
   const onCancel = () => {
     setTempColor([]);
     setProduct(defaultProductObj);
